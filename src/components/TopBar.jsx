@@ -1,10 +1,17 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+import { Stack, useTheme } from '@mui/material';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 
 const drawerWidth = 240;
 
@@ -26,9 +33,51 @@ const StyledAppBar = styled(MuiAppBar, {
   }),
 }));
 
-function TopBar({ open, handleDrawerOpen }) {
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+}));
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(3),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+function TopBar({ open, handleDrawerOpen, mode, setMode }) {
+  const theme = useTheme();
+  
   return (
-    <StyledAppBar position="fixed" open={open}>
+    <StyledAppBar position="fixed" open={open} color="primary">
       <Toolbar>
         <IconButton
           color="inherit"
@@ -42,9 +91,35 @@ function TopBar({ open, handleDrawerOpen }) {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          Mini variant drawer
-        </Typography>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </Search>
+        <Stack direction="row" spacing={1} sx={{ marginLeft: 'auto' }} >
+          {mode === "dark" ? (
+            <IconButton aria-label="light mode" color="inherit" onClick={() => setMode("light")}>
+              <LightModeOutlinedIcon />
+            </IconButton>
+          ) : (
+            <IconButton aria-label="dark mode" color="inherit" onClick={() => setMode("dark")}>
+              <DarkModeOutlinedIcon />
+            </IconButton>
+          )}
+          <IconButton aria-label="notifications" color="inherit">
+            <NotificationsOutlinedIcon />
+          </IconButton>
+          <IconButton aria-label="settings" color="inherit">
+            <SettingsOutlinedIcon />
+          </IconButton>
+          <IconButton aria-label="profile" color="inherit">
+            <PersonOutlineOutlinedIcon />
+          </IconButton>
+        </Stack>
       </Toolbar>
     </StyledAppBar>
   );
