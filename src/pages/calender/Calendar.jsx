@@ -5,12 +5,11 @@ import { formatDate } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // Ensure this import is uncommented
-import { useTheme } from '@mui/material';
+import "./calendar.css";
 
 export default function Calendar() {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [currentEvents, setCurrentEvents] = useState([]);
-  const theme = useTheme()
 
   function handleWeekendsToggle() {
     setWeekendsVisible(!weekendsVisible);

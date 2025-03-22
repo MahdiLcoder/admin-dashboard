@@ -23,6 +23,9 @@ const StyledAppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  backgroundColor: theme.palette.background.default,
+  boxShadow: 'none',
+  borderBottom: `1px solid ${theme.palette.divider}`,
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -75,9 +78,9 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 function TopBar({ open, handleDrawerOpen, mode, setMode }) {
   const theme = useTheme();
-  
+
   return (
-    <StyledAppBar position="fixed" open={open} color="primary">
+    <StyledAppBar position="fixed" open={open} color="default">
       <Toolbar>
         <IconButton
           color="inherit"
