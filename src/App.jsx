@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { styled, useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+import { styled, ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import TopBar from './components/TopBar';

@@ -87,7 +87,7 @@ function SideBar({ open, handleDrawerClose }) {
   ];
 
   const array2 = [
-    { text: 'Profile Form', icon: <PersonOutlinedIcon />, path: '/profile' },
+    { text: 'Profile Form', icon: <PersonOutlinedIcon />, path: '/Form' },
     { text: 'Calendar', icon: <CalendarTodayOutlinedIcon />, path: '/calendar' },
     { text: 'FAQ Page', icon: <LiveHelpOutlinedIcon />, path: '/FAQ' },
   ];
@@ -126,15 +126,15 @@ function SideBar({ open, handleDrawerClose }) {
                 {
                   minHeight: 48,
                   px: 2.5,
-                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800]: grey[300] : null,
+                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800] : grey[300] : null,
                 },
                 open
                   ? {
-                      justifyContent: 'initial',
-                    }
+                    justifyContent: 'initial',
+                  }
                   : {
-                      justifyContent: 'center',
-                    },
+                    justifyContent: 'center',
+                  },
               ]}
             >
               <ListItemIcon
@@ -145,11 +145,11 @@ function SideBar({ open, handleDrawerClose }) {
                   },
                   open
                     ? {
-                        mr: 3,
-                      }
+                      mr: 3,
+                    }
                     : {
-                        mr: 'auto',
-                      },
+                      mr: 'auto',
+                    },
                 ]}
               >
                 {item.icon}
@@ -159,11 +159,11 @@ function SideBar({ open, handleDrawerClose }) {
                 sx={[
                   open
                     ? {
-                        opacity: 1,
-                      }
+                      opacity: 1,
+                    }
                     : {
-                        opacity: 0,
-                      },
+                      opacity: 0,
+                    },
                 ]}
               />
             </ListItemButton>
@@ -182,15 +182,15 @@ function SideBar({ open, handleDrawerClose }) {
                 {
                   minHeight: 48,
                   px: 2.5,
-                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800]: grey[300] : null,
+                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800] : grey[300] : null,
                 },
                 open
                   ? {
-                      justifyContent: 'initial',
-                    }
+                    justifyContent: 'initial',
+                  }
                   : {
-                      justifyContent: 'center',
-                    },
+                    justifyContent: 'center',
+                  },
               ]}
             >
               <ListItemIcon
@@ -201,11 +201,11 @@ function SideBar({ open, handleDrawerClose }) {
                   },
                   open
                     ? {
-                        mr: 3,
-                      }
+                      mr: 3,
+                    }
                     : {
-                        mr: 'auto',
-                      },
+                      mr: 'auto',
+                    },
                 ]}
               >
                 {item.icon}
@@ -215,11 +215,11 @@ function SideBar({ open, handleDrawerClose }) {
                 sx={[
                   open
                     ? {
-                        opacity: 1,
-                      }
+                      opacity: 1,
+                    }
                     : {
-                        opacity: 0,
-                      },
+                      opacity: 0,
+                    },
                 ]}
               />
             </ListItemButton>
@@ -236,15 +236,15 @@ function SideBar({ open, handleDrawerClose }) {
                 {
                   minHeight: 48,
                   px: 2.5,
-                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800]: grey[300] : null,
+                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800] : grey[300] : null,
                 },
                 open
                   ? {
-                      justifyContent: 'initial',
-                    }
+                    justifyContent: 'initial',
+                  }
                   : {
-                      justifyContent: 'center',
-                    },
+                    justifyContent: 'center',
+                  },
               ]}
             >
               <ListItemIcon
@@ -255,11 +255,11 @@ function SideBar({ open, handleDrawerClose }) {
                   },
                   open
                     ? {
-                        mr: 3,
-                      }
+                      mr: 3,
+                    }
                     : {
-                        mr: 'auto',
-                      },
+                      mr: 'auto',
+                    },
                 ]}
               >
                 {item.icon}
@@ -269,11 +269,11 @@ function SideBar({ open, handleDrawerClose }) {
                 sx={[
                   open
                     ? {
-                        opacity: 1,
-                      }
+                      opacity: 1,
+                    }
                     : {
-                        opacity: 0,
-                      },
+                      opacity: 0,
+                    },
                 ]}
               />
             </ListItemButton>
