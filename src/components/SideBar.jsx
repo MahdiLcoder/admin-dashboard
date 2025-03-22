@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import MuiDrawer from '@mui/material/Drawer';
 import { styled, useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -9,35 +9,44 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
+import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import LiveHelpOutlinedIcon from '@mui/icons-material/LiveHelpOutlined';
+import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
+import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutlined';
+import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
+import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+import Typography from '@mui/material/Typography';
+import { Avatar } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { grey } from '@mui/material/colors';
 
 const drawerWidth = 240;
 
-
-
 const openedMixin = (theme) => ({
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    overflowX: 'hidden',
-  });
-  const closedMixin = (theme) => ({
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: `calc(${theme.spacing(7)} + 1px)`,
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(${theme.spacing(8)} + 1px)`,
-    },
-  });
-  
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
 
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -47,146 +56,232 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
+
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme }) => ({
-      width: drawerWidth,
-      flexShrink: 0,
-      whiteSpace: 'nowrap',
-      boxSizing: 'border-box',
-      variants: [
-        {
-          props: ({ open }) => open,
-          style: {
-            ...openedMixin(theme),
-            '& .MuiDrawer-paper': openedMixin(theme),
-          },
-        },
-        {
-          props: ({ open }) => !open,
-          style: {
-            ...closedMixin(theme),
-            '& .MuiDrawer-paper': closedMixin(theme),
-          },
-        },
-      ],
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
     }),
-  );
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  })
+);
+
 function SideBar({ open, handleDrawerClose }) {
-      const theme = useTheme();
-    
+  const theme = useTheme();
+  const navigate = useNavigate();
+  let location = useLocation();
+
+  const array1 = [
+    { text: 'Dashboard', icon: <HomeOutlinedIcon />, path: '/' },
+    { text: 'Manage Team', icon: <PeopleOutlineOutlinedIcon />, path: '/team' },
+    { text: 'Contact Information', icon: <ContactsOutlinedIcon />, path: '/contact' },
+    { text: 'Invoices Balances', icon: <ReceiptOutlinedIcon />, path: '/invoices' },
+  ];
+
+  const array2 = [
+    { text: 'Profile Form', icon: <PersonOutlinedIcon />, path: '/profile' },
+    { text: 'Calendar', icon: <CalendarTodayOutlinedIcon />, path: '/calendar' },
+    { text: 'FAQ Page', icon: <LiveHelpOutlinedIcon />, path: '/FAQ' },
+  ];
+
+  const array3 = [
+    { text: 'Bar Chart', icon: <BarChartOutlinedIcon />, path: '/bar' },
+    { text: 'Pie Chart', icon: <PieChartOutlineOutlinedIcon />, path: '/pie' },
+    { text: 'Line Chart', icon: <ShowChartOutlinedIcon />, path: '/line' },
+    { text: 'Geography Chart', icon: <MapOutlinedIcon />, path: '/geography' },
+  ];
+
   return (
     <Drawer variant="permanent" open={open}>
-    <DrawerHeader>
-      <IconButton onClick={handleDrawerClose}>
-        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-      </IconButton>
-    </DrawerHeader>
-    <Divider />
-    <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={[
-              {
-                minHeight: 48,
-                px: 2.5,
-              },
-              open
-                ? {
-                    justifyContent: 'initial',
-                  }
-                : {
-                    justifyContent: 'center',
-                  },
-            ]}
-          >
-            <ListItemIcon
+      <DrawerHeader>
+        <IconButton onClick={handleDrawerClose}>
+          {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronLeftIcon />}
+        </IconButton>
+      </DrawerHeader>
+
+      <Avatar sx={{ mx: 'auto', width: open ? 88 : 44, height: open ? 88 : 44, my: 1, border: '2px solid grey', transition: '0.25s' }} alt="Layla Ali" src="https://photosbulk.com/wp-content/uploads/dpz-dp-for-girls-instagram_27.webp" />
+      {open && (
+        <>
+          <Typography align="center" sx={{ fontSize: 17, transition: '0.25s' }}>Layla Ali</Typography>
+          <Typography align="center" sx={{ fontSize: 15, transition: '0.25s' }} color={theme.palette.info.main}>admin</Typography>
+        </>
+      )}
+
+      <Divider />
+
+      <List>
+        {array1.map((item) => (
+          <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              onClick={() => { navigate(item.path); }}
               sx={[
                 {
-                  minWidth: 0,
-                  justifyContent: 'center',
+                  minHeight: 48,
+                  px: 2.5,
+                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800]: grey[300] : null,
                 },
                 open
                   ? {
-                      mr: 3,
+                      justifyContent: 'initial',
                     }
                   : {
-                      mr: 'auto',
+                      justifyContent: 'center',
                     },
               ]}
             >
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText
-              primary={text}
-              sx={[
-                open
-                  ? {
-                      opacity: 1,
-                    }
-                  : {
-                      opacity: 0,
-                    },
-              ]}
-            />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-    <Divider />
-    <List>
-      {['All mail', 'Trash', 'Spam'].map((text, index) => (
-        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-          <ListItemButton
-            sx={[
-              {
-                minHeight: 48,
-                px: 2.5,
-              },
-              open
-                ? {
-                    justifyContent: 'initial',
-                  }
-                : {
+              <ListItemIcon
+                sx={[
+                  {
+                    minWidth: 0,
                     justifyContent: 'center',
                   },
-            ]}
-          >
-            <ListItemIcon
+                  open
+                    ? {
+                        mr: 3,
+                      }
+                    : {
+                        mr: 'auto',
+                      },
+                ]}
+              >
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={item.text}
+                sx={[
+                  open
+                    ? {
+                        opacity: 1,
+                      }
+                    : {
+                        opacity: 0,
+                      },
+                ]}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+
+      <Divider />
+
+      <List>
+        {array2.map((item) => (
+          <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              onClick={() => { navigate(item.path); }}
               sx={[
                 {
-                  minWidth: 0,
-                  justifyContent: 'center',
+                  minHeight: 48,
+                  px: 2.5,
+                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800]: grey[300] : null,
                 },
                 open
                   ? {
-                      mr: 3,
+                      justifyContent: 'initial',
                     }
                   : {
-                      mr: 'auto',
+                      justifyContent: 'center',
                     },
               ]}
             >
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText
-              primary={text}
+              <ListItemIcon
+                sx={[
+                  {
+                    minWidth: 0,
+                    justifyContent: 'center',
+                  },
+                  open
+                    ? {
+                        mr: 3,
+                      }
+                    : {
+                        mr: 'auto',
+                      },
+                ]}
+              >
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={item.text}
+                sx={[
+                  open
+                    ? {
+                        opacity: 1,
+                      }
+                    : {
+                        opacity: 0,
+                      },
+                ]}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {array3.map((item) => (
+          <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              onClick={() => { navigate(item.path); }}
               sx={[
+                {
+                  minHeight: 48,
+                  px: 2.5,
+                  bgcolor: location.pathname === item.path ? theme.palette.mode === 'dark' ? grey[800]: grey[300] : null,
+                },
                 open
                   ? {
-                      opacity: 1,
+                      justifyContent: 'initial',
                     }
                   : {
-                      opacity: 0,
+                      justifyContent: 'center',
                     },
               ]}
-            />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-  </Drawer>
-  )
+            >
+              <ListItemIcon
+                sx={[
+                  {
+                    minWidth: 0,
+                    justifyContent: 'center',
+                  },
+                  open
+                    ? {
+                        mr: 3,
+                      }
+                    : {
+                        mr: 'auto',
+                      },
+                ]}
+              >
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={item.text}
+                sx={[
+                  open
+                    ? {
+                        opacity: 1,
+                      }
+                    : {
+                        opacity: 0,
+                      },
+                ]}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Drawer>
+  );
 }
 
-export default SideBar
+export default SideBar;

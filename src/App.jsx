@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { styled, useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import TopBar from './components/TopBar';
 import SideBar from './components/SideBar';
 import { lightTheme, darkTheme } from './theme';
 import useLocalStorage from './hooks/useLocalStorage';
+import AllRoute from './routes/AllRoute';
 
 
 
@@ -42,9 +42,7 @@ function App() {
         <SideBar open={open} handleDrawerClose={handleDrawerClose} />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-          <Typography sx={{ marginBottom: 2 }}>
-            Lorem 
-          </Typography>
+          <AllRoute />
         </Box>
       </Box>
     </ThemeProvider>
