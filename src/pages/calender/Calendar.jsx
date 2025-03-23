@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import "./calendar.css";
+import { Paper } from '@mui/material';
 
 export default function Calendar() {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
@@ -84,14 +85,14 @@ function renderEventContent(eventInfo) {
 function Sidebar({ weekendsVisible, handleWeekendsToggle, currentEvents }) {
   return (
     <div className={'demo-app-sidebar'}>
-      <div className='demo-app-sidebar-section'>
+      <Paper className='demo-app-sidebar-section'>
         <h2>All Events ({currentEvents.length})</h2>
         <ul>
           {currentEvents.map((event) => (
             <SidebarEvent key={event.id} event={event} />
           ))}
         </ul>
-      </div>
+      </Paper>
     </div>
   );
 }
