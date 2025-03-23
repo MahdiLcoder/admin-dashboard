@@ -1,4 +1,4 @@
-import Dashboard from '../pages/Dashboard'
+import Dashboard from '../pages/dashboard/Dashboard'
 import ManageTeam from '../pages/team/ManageTeam'
 import Contact from '../pages/contact/Contacts'
 import Invoices from '../pages/invoices/Invoices'
@@ -6,9 +6,9 @@ import Form from '../pages/Form'
 import Calendar from '../pages/calender/Calendar'
 import FAQ from '../pages/FAQ'
 import BarChart from '../pages/barChart/BarChart'
-import PieChart from '../pages/PieChart'
-import LineChart from '../pages/LineChart'
-import GeographyChart from '../pages/GeographyChart'
+import PieChart from '../pages/pieChart/PieChart'
+import LineChart from '../pages/lineChart/LineChart'
+import Geography from '../pages/geographyChart/Geography'
 import { Route, Routes } from "react-router-dom"
 
 
@@ -25,7 +25,7 @@ function AllRoute() {
       <Route path="/bar" element={<BarChart />} />
       <Route path="/pie" element={<PieChart />} />
       <Route path="/line" element={<LineChart />} />
-      <Route path="/geography" element={<GeographyChart />} />
+      <Route path="/geography" element={<Geography />} />
     </Routes>
   )
 }
